@@ -162,6 +162,11 @@ variable "security_configuration" {
 }
 
 ### NETWORKING
+variable "public_network_access_enabled" {
+  type        = bool
+  description = "(Optional) Is public access to the service allowed? Defaults to true"
+  default     = true
+}
 
 variable "virtual_network_type" {
   type        = string

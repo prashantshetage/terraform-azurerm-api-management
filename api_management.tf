@@ -163,10 +163,12 @@ resource "azurerm_api_management" "apim" {
     }
   }
 
-  virtual_network_type = var.virtual_network_type
+  # Networking
+  public_network_access_enabled = var.public_network_access_enabled
+  virtual_network_type          = var.virtual_network_type
 
   dynamic "virtual_network_configuration" {
-    for_each = toset(var.virtual_network_configuration)
+    for_each = var.virtual_network_type == "External" || var.virtual_network_type == "Internal" ? toset(var.virtual_network_configuration) : []
     content {
       subnet_id = virtual_network_configuration.value
     }
