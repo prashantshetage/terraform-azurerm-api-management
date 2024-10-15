@@ -111,13 +111,13 @@ resource "azurerm_api_management" "apim" {
 
   notification_sender_email = var.notification_sender_email
 
-  dynamic "policy" {
-    for_each = var.policy_configuration
-    content {
-      xml_content = lookup(policy.value, "xml_content", null)
-      xml_link    = lookup(policy.value, "xml_link", null)
-    }
-  }
+  # dynamic "policy" {
+  #   for_each = var.policy_configuration
+  #   content {
+  #     xml_content = lookup(policy.value, "xml_content", null)
+  #     xml_link    = lookup(policy.value, "xml_link", null)
+  #   }
+  # }
 
   protocols {
     enable_http2 = var.enable_http2
